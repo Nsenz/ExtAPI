@@ -8,15 +8,16 @@ ARTICLES_POST_ROUTER.post('/', JSON_PARSER, async (req,res)=>{
     let object = new ARTICLES_MODEL({
         number: req.body.number,
         title: req.body.title,
-        dateStart: req.body.dateStart,
-        dateEnd: req.body.dateEnd,
-        toDate: req.body.toDate,
+        dateStart: req.body.dateStart*1000,
+        dateEnd: req.body.dateEnd*1000,
+        toDate: req.body.toDate*1000,
         type: req.body.type,
         contents: req.body.contents,
     });
     try{
         let result = await object.save();
         res.sendStatus(201);
+        console.log(Date.now()+`: record has been created`);
     }
     catch(e){
         console.error(e);

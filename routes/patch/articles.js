@@ -9,10 +9,11 @@ ARTICLES_PATCH_ROUTER.patch('/:id',JSON_PARSER, async (req, res)=>{
         let updated = await ARTICLES_MODEL
         .updateOne({_id:req.params.id},{
             $set:{
-                title: req.body.title
+                number: req.body.number
             }
         });
         res.send(updated);
+        console.log(Date.now()+": updated");
     }
     catch(e){
         res.sendStatus(400);

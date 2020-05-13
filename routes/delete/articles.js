@@ -6,6 +6,7 @@ ARTICLES_DELETE_ROUTER.delete('/:id', async (req,res)=>{
     try{
         await ARTICLES_MODEL.deleteOne({_id:req.params.id});
         res.sendStatus(204);
+        console.log(Date.now()+": deleted");
     }
     catch(e){
         res.sendStatus(400);

@@ -6,6 +6,7 @@ const JSON_PARSER = PARSER.json();
 
 ARTICLES_GET_ROUTER.get('/', JSON_PARSER, async (req,res)=>{
     try{
+        console.log(Date.now()+" "+req.hostname+" is fetching...");
         let models = await ARTICLES_MODEL.find();
         res.send(models);
     }

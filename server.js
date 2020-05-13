@@ -1,6 +1,7 @@
 const EXPRESS = require('express');
 const MONGO = require('mongoose');
 const SERVER = EXPRESS();
+const CORS = require('cors');
 
 const ARTICLES_GET_ROUTER = require('./routes/get/articles');
 const ARTICLES_POST_ROUTER = require('./routes/post/articles');
@@ -11,6 +12,7 @@ const USERS_GET_ROUTER = require('./routes/get/users');
 const PORT = process.env.PORT || 3000;
 const MONGO_CONNCTION = 'mongodb://localhost:27017/catalogue';
 
+SERVER.use(CORS());
 SERVER.use('/articles', ARTICLES_GET_ROUTER);
 SERVER.use('/users', USERS_GET_ROUTER);
 SERVER.use('/post/article', ARTICLES_POST_ROUTER);
@@ -27,4 +29,4 @@ SERVER.listen(PORT, ()=>{
     catch(e){
         console.error(e);
     }
-})
+});
