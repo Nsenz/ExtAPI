@@ -19,7 +19,8 @@ const ARTICLES_SCHEMA = MONGO.Schema({
     },
     toDate: {
         type: Date,
-        default: Date.now()
+        default: Date.now(),
+        required: true
     },
     type: {
         type: String,
