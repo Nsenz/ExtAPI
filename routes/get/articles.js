@@ -16,9 +16,11 @@ ARTICLES_GET_ROUTER.get('/', JSON_PARSER, async (req,res)=>{
     }
 });
 
-ARTICLES_GET_ROUTER.get('/:id', JSON_PARSER, async (req,res)=>{
+ARTICLES_GET_ROUTER.get('/params', JSON_PARSER, async (req,res)=>{
     try{
-        let models = await ARTICLES_MODEL.findById(req.params.id);
+        var queryParameters = req.query;
+        console.log(Date.now()+" "+req.hostname+" is fetching...");
+        let models = await ARTICLES_MODEL.find(queryParameters);
         res.send(models);
     }
     catch(e){
