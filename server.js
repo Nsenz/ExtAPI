@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 const MONGO_CONNCTION = 'mongodb://localhost:27017/catalogue';
 
 SERVER.use(CORS());
-SERVER.use('/articles', ARTICLES_GET_ROUTER); //(1. /; 2./params?[params]);
+SERVER.use('/articles', ARTICLES_GET_ROUTER); //(1. /; 2./params?[params] 3./limits?[page=1&start=0&limit=4]);
 SERVER.use('/users', USERS_GET_ROUTER);
 SERVER.use('/post/article', ARTICLES_POST_ROUTER); // :id
 SERVER.use('/delete/article', ARTICLES_DELETE_ROUTER); // :id
