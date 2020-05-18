@@ -27,8 +27,17 @@ const ARTICLES_SCHEMA = MONGO.Schema({
         required: true
     },
     contents: {
-        type: String
+        type: String,
+        required: true
+    },
+    hash:{
+        type: String,
+        required: true
+    },
+    creationDate:{
+        type: Date,
+        required: true
     }
 });
 
-module.exports = MONGO.model('articles', ARTICLES_SCHEMA);
+module.exports = MONGO.model('articlesv1', ARTICLES_SCHEMA);

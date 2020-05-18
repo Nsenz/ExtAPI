@@ -1,12 +1,11 @@
 const EXPRESS = require('express');
 const ARTICLES_DELETE_ROUTER = EXPRESS.Router();
-const ARTICLES_MODEL = require('../../models/articlesModel');
+const CRUD_SERVICE = require('../../usecases/article/index');
 
 ARTICLES_DELETE_ROUTER.delete('/:id', async (req,res)=>{
     try{
-        await ARTICLES_MODEL.deleteOne({_id:req.params.id});
+        CRUD_SERVICE.removeArticle(req.params.id);
         res.sendStatus(204);
-        console.log(Date.now()+": deleted");
     }
     catch(e){
         res.sendStatus(400);
