@@ -40,23 +40,26 @@ function paginatedRequest(model, withParameters){
         if (queryParameters.page <= 0){
             queryParameters.page = 1;
         }
-        console.log(queryParameters);
+        //console.log(queryParameters);
         let limit = Number(queryParameters.limit) || 999999999999;
-        delete queryParameters.limit;
         let start = (Number(queryParameters.page)-1)*limit || 0;
+        delete queryParameters.limit;
         delete queryParameters.start;
         delete queryParameters.page;
+        let results = {};
+        results.total = (await model.find()).length;
         console.log(Date.now()+" "+req.hostname+" is fetching with parameters...");
         try{
             if(withParameters){
                 let models = await model.find(queryParameters)
                 .skip(start).limit(limit);
-                res.paginated = models;
+                results.results = models;
             }else{
                 let models = await model.find()
                 .skip(start).limit(limit);
-                res.paginated = models;
+                results.results = models;
             }
+            res.paginated = results;
             next();
         }
         catch(e){

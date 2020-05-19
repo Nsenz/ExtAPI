@@ -23,7 +23,14 @@ function generateMD5(text){
 }
 
 function numberGenerator(){
-    return Math.floor(Math.random() * 10000);
+    let generator = (seed)=>{
+        let value = seed;
+        return function(){
+            value = value * 127581275817285215%21321412;
+            return value;
+        }
+    }
+    return generator(1)();
 }
 
 module.exports = ARTICLES_FACTORY({numberValidator, dateValidator, typeValidator, numberGenerator, generateMD5});
